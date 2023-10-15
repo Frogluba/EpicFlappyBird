@@ -11,11 +11,14 @@ public class EpicBirb : MonoBehaviour
     public float rotatateScale;
     public int score;
     public TMP_Text scoretText;
+    public float speed;
+    public GameObject endScreen;
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Pipe.speed = speed;
     }
 
     void Update()
@@ -35,8 +38,16 @@ public class EpicBirb : MonoBehaviour
 
     void Die()
     {
-        var curremtScene = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(curremtScene);
+        Pipe.speed = 0;
+        Invoke("ShowMenu", 1f);
+        jumpSpeed = 0;
+        //var curremtScene = SceneManager.GetActiveScene().name;
+        //SceneManager.LoadScene(curremtScene);
+    }
+    void ShowMenu()
+    {
+        endScreen.SetActive(true);
+        scoretText.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
