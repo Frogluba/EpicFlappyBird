@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +10,9 @@ public class EpicBirb : MonoBehaviour
     public float jumpSpeed;
     public float rotatateScale;
     public int score;
-    
+    public TMP_Text scoretText;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -39,6 +42,7 @@ public class EpicBirb : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         score++;
+        scoretText.text = score.ToString();
     }
 
 }
