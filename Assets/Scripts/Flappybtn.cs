@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Flappybtn : MonoBehaviour
 {
-    public string nextSceneNext;
+    public string nextScene;
 
     private void OnMouseDown()
     {
@@ -15,9 +15,9 @@ public class Flappybtn : MonoBehaviour
     private void OnMouseUp()
     {
         transform.position += Vector3.up * 0.1f;
-        if (nextSceneNext!= "")
+        if (nextScene != "")
         {
-            SceneManager.LoadScene(nextSceneNext);
+            SceneManager.LoadScene(nextScene);
         };
     }
     // Start is called before the first frame update

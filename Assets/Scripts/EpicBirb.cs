@@ -7,18 +7,37 @@ using UnityEngine.SceneManagement;
 public class EpicBirb : MonoBehaviour
 {
     Rigidbody2D rb;
-    public float jumpSpeed;
+    public  float jumpSpeed;
     public float rotatateScale;
     public int score;
     public TMP_Text scoretText;
     public float speed;
     public GameObject endScreen;
+    public GameObject yellowbird;
+    public GameObject redbird;
+    public GameObject bluebird;
+    public GameObject flash;
+
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         Pipe.speed = speed;
+
+        var rnd = Random.Range(0, 1);
+        if(rnd <0.33f)
+        {
+            yellowbird.SetActive(true);
+        }
+        else if (rnd < 0.66f)
+        {
+            redbird.SetActive(true); 
+        }
+        else
+        {
+            bluebird.SetActive(true);
+        }
     }
 
     void Update()
@@ -39,8 +58,10 @@ public class EpicBirb : MonoBehaviour
     void Die()
     {
         Pipe.speed = 0;
-        Invoke("ShowMenu", 1f);
+        Invoke("ShowMenu", 0.1f);
         jumpSpeed = 0;
+        PlayerPrefs.SetInt("score", score);
+        flash.SetActive(true);
         //var curremtScene = SceneManager.GetActiveScene().name;
         //SceneManager.LoadScene(curremtScene);
     }
