@@ -9,6 +9,7 @@ public class Flash : MonoBehaviour
     void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
+        
     }
 
     // Update is called once per frame
@@ -18,5 +19,7 @@ public class Flash : MonoBehaviour
         color.a-= Time.deltaTime;
 
         renderer.color = color;
+
+        
     }
 }

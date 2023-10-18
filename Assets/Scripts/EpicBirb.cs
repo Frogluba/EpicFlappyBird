@@ -17,6 +17,8 @@ public class EpicBirb : MonoBehaviour
     public GameObject redbird;
     public GameObject bluebird;
     public GameObject flash;
+    public AudioClip jumpSound;
+    public AudioClip diedsound;
 
 
 
@@ -45,6 +47,9 @@ public class EpicBirb : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
             rb.velocity = Vector2.up * jumpSpeed;
+            var source = GetComponent<AudioSource>();
+            source.clip = jumpSound;
+            source.Play();
         }
 
         transform.eulerAngles = new Vector3(0, 0, rb.velocity.y * rotatateScale);
@@ -53,6 +58,9 @@ public class EpicBirb : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Die();
+        var source = GetComponent<AudioSource>();
+        source.clip = diedsound;
+        source.Play();
     }
 
     void Die()
@@ -62,6 +70,7 @@ public class EpicBirb : MonoBehaviour
         jumpSpeed = 0;
         PlayerPrefs.SetInt("score", score);
         flash.SetActive(true);
+
         //var curremtScene = SceneManager.GetActiveScene().name;
         //SceneManager.LoadScene(curremtScene);
     }
